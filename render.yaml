@@ -3,6 +3,7 @@ services:
     name: arcano-oracle
     runtime: node
     env: node
+    rootDir: arcano-oracle
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
