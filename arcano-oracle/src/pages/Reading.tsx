@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, MessageSquare } from 'lucide-react';
+import { ArrowLeft, MessageSquare, AlertCircle } from 'lucide-react';
 import { useReadingStore } from '../store/readingStore';
 import { getSpreadById } from '../data/spreads';
 import { SpreadLayout } from '../components/spreads/SpreadLayout';
@@ -9,11 +9,13 @@ import { InterpretationDisplay } from '../components/interpretation/Interpretati
 import { Button } from '../components/ui/Button';
 import { Loading } from '../components/ui/Loading';
 import { getInterpretation } from '../services/groq.service';
+import { validateUserQuestion, type ValidationResult } from '../utils/inputValidation';
 
 export const Reading: React.FC = () => {
   const { spreadId } = useParams<{ spreadId: string }>();
   const navigate = useNavigate();
   const [showQuestionInput, setShowQuestionInput] = useState(true);
+  const [validationResult, setValidationResult] = useState<ValidationResult>({ isValid: true });
 
   const {
     currentSpread,
@@ -43,6 +45,13 @@ export const Reading: React.FC = () => {
 
   const handleDrawCard = (positionId: number) => {
     drawCard(positionId);
+  };
+
+  const handleQuestionChange = (value: string) => {
+    setQuestion(value);
+    // Validar en tiempo real
+    const result = validateUserQuestion(value);
+    setValidationResult(result);
   };
 
   const handleGetInterpretation = async () => {
@@ -128,20 +137,64 @@ export const Reading: React.FC = () => {
                 <h3 className="text-lg font-semibold text-text mb-2">
                   ¿Tienes una pregunta? (Opcional)
                 </h3>
-                <textarea
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
-                  placeholder="Escribe tu pregunta aquí para una lectura más personalizada..."
-                  className="w-full bg-background/50 border border-primary/30 rounded-lg p-3 text-text placeholder-text/50 focus:outline-none focus:border-accent resize-none"
-                  rows={3}
-                />
+                <div className="relative">
+                  <textarea
+                    value={question}
+                    onChange={(e) => handleQuestionChange(e.target.value)}
+                    placeholder="Escribe tu pregunta aquí para una lectura más personalizada..."
+                    className={`w-full bg-background/50 border rounded-lg p-3 text-text placeholder-text/50 focus:outline-none resize-none transition-colors ${
+                      !validationResult.isValid
+                        ? 'border-red-500 focus:border-red-500'
+                        : 'border-primary/30 focus:border-accent'
+                    }`}
+                    rows={3}
+                    maxLength={500}
+                  />
+
+                  {/* Contador de caracteres */}
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="flex-1">
+                      {!validationResult.isValid && validationResult.error && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="flex items-start gap-2 text-red-400 text-sm"
+                        >
+                          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                          <span>{validationResult.error}</span>
+                        </motion.div>
+                      )}
+                    </div>
+                    <span
+                      className={`text-xs ml-4 flex-shrink-0 ${
+                        (validationResult.remainingChars ?? 500) < 50
+                          ? 'text-amber-400'
+                          : 'text-text/50'
+                      }`}
+                    >
+                      {question.length}/500
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-3">
+              <Button
+                onClick={() => {
+                  setQuestion('');
+                  setValidationResult({ isValid: true });
+                  setShowQuestionInput(false);
+                }}
+                variant="outline"
+                size="sm"
+              >
+                Omitir pregunta
+              </Button>
               <Button
                 onClick={() => setShowQuestionInput(false)}
                 variant="primary"
                 size="sm"
+                disabled={!validationResult.isValid}
               >
                 Continuar
               </Button>
