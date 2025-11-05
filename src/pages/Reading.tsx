@@ -5,6 +5,7 @@ import { ArrowLeft, MessageSquare, AlertCircle } from 'lucide-react';
 import { useReadingStore } from '../store/readingStore';
 import { getSpreadById } from '../data/spreads';
 import { SpreadLayout } from '../components/spreads/SpreadLayout';
+import { CelticCrossLayout } from '../components/spreads/CelticCrossLayout';
 import { InterpretationDisplay } from '../components/interpretation/InterpretationDisplay';
 import { Button } from '../components/ui/Button';
 import { Loading } from '../components/ui/Loading';
@@ -216,13 +217,23 @@ export const Reading: React.FC = () => {
 
       {/* Spread Layout */}
       {!showQuestionInput && !interpretation && (
-        <SpreadLayout
-          spread={currentSpread}
-          drawnCards={drawnCards}
-          onDrawCard={handleDrawCard}
-          onGetInterpretation={handleGetInterpretation}
-          canGetInterpretation={canGetInterpretation}
-        />
+        currentSpread.id === 'celtic-cross' ? (
+          <CelticCrossLayout
+            spread={currentSpread}
+            drawnCards={drawnCards}
+            onDrawCard={handleDrawCard}
+            onGetInterpretation={handleGetInterpretation}
+            canGetInterpretation={canGetInterpretation}
+          />
+        ) : (
+          <SpreadLayout
+            spread={currentSpread}
+            drawnCards={drawnCards}
+            onDrawCard={handleDrawCard}
+            onGetInterpretation={handleGetInterpretation}
+            canGetInterpretation={canGetInterpretation}
+          />
+        )
       )}
 
       {/* Loading Interpretation */}
