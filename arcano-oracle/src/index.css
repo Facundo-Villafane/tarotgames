@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* 🚀 CONFIGURACIÓN DE TEMA PARA TAILWIND 4.1 (MANTENIDO Y REVISADO) */
+@theme {
+  /* Configuración de Colores */
+  --color-primary: #7C3AED;
+  --color-secondary: #A855F7;
+  --color-background: #0A0A0F;
+  --color-card-bg: #1A1625;
+  --color-surface: #241E30;
+  --color-text: #F3F4F6;
+  --color-text-secondary: #9CA3AF;
+  --color-accent: #FBBF24;
+  --color-accent-secondary: #F59E0B;
+  --color-border: #2D2438;
+
+  /* Configuraciones que puedes usar en tus clases Tailwind:
+     Ej: class="shadow-glow" o class="animate-float" */
+  --shadow-glow: 0 0 30px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.2);
+  --shadow-glow-lg: 0 0 40px rgba(124, 58, 237, 0.6), 0 0 80px rgba(124, 58, 237, 0.3);
+  --animate-gradient-x: gradient-x 3s ease infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  
+  /* Configuracion de Fuentes (Opcional, pero útil) */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-title: 'Cinzel', serif;
+}
+

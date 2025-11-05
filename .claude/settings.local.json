@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(del \"src\\App.css\")",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(del tailwind.config.js)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
