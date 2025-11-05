@@ -125,14 +125,13 @@ export const Reading: React.FC = () => {
       </div>
       {/* Back Button */}
       <div className="max-w-6xl mx-auto mb-6">
-        <Button
+        <button
           onClick={handleNewReading}
-          variant="outline"
-          size="sm"
+          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
         >
-          <ArrowLeft className="w-4 h-4" />
-          Nueva Lectura
-        </Button>
+          <ArrowLeft className="w-4 h-4" strokeWidth={1.5} />
+          <span>Nueva Lectura</span>
+        </button>
       </div>
 
       {/* Question Input */}
