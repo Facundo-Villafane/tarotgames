@@ -35,19 +35,18 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
 
   const nextPosition = getNextPosition();
 
-  // Posiciones según la imagen de la Cruz Celta
-  // La carta rotada (1) se posiciona con z-index mayor para estar sobre la carta 0
+  // Posiciones según la imagen de la Cruz Celta tradicional
   const positions = [
-    { id: 0, name: 'El Ser / La Esencia', gridArea: '2 / 2 / 3 / 3', zIndex: 1 }, // Centro (1)
-    { id: 1, name: 'Hacer - El Desafío', gridArea: '2 / 2 / 3 / 3', rotated: true, zIndex: 2 }, // Centro (2) - Cruz sobre 1
-    { id: 2, name: 'Inconsciente / Lo Oculto', gridArea: '3 / 2 / 4 / 3', zIndex: 1 }, // Abajo centro (3)
-    { id: 3, name: 'Consciente / A la vista', gridArea: '1 / 2 / 2 / 3', zIndex: 1 }, // Arriba centro (4)
-    { id: 4, name: 'Pasado Reciente', gridArea: '2 / 1 / 3 / 2', zIndex: 1 }, // Izquierda (5)
-    { id: 5, name: 'Futuro Próximo', gridArea: '2 / 3 / 3 / 4', zIndex: 1 }, // Derecha (6)
-    { id: 6, name: 'Presente / Lo Actual', gridArea: '4 / 4 / 5 / 5', zIndex: 1 }, // Columna derecha abajo (7)
-    { id: 7, name: 'Entorno / Ambiente', gridArea: '3 / 4 / 4 / 5', zIndex: 1 }, // Columna derecha medio-abajo (8)
-    { id: 8, name: 'Esperanzas y Temores', gridArea: '2 / 4 / 3 / 5', zIndex: 1 }, // Columna derecha medio-arriba (9)
-    { id: 9, name: 'Tendencia / Resultado', gridArea: '1 / 4 / 2 / 5', zIndex: 1 }, // Columna derecha arriba (10)
+    { id: 0, name: 'Situación actual', gridArea: '3 / 2 / 4 / 3', zIndex: 1 }, // (1) Centro
+    { id: 1, name: 'El Desafío', gridArea: '3 / 2 / 4 / 3', rotated: true, zIndex: 2 }, // (2) Cruz horizontal sobre 1
+    { id: 2, name: 'Objetivos, deseos', gridArea: '1 / 2 / 2 / 3', zIndex: 1 }, // (3) Arriba
+    { id: 3, name: 'Pasado-consecuencias', gridArea: '5 / 2 / 6 / 3', zIndex: 1 }, // (4) Abajo
+    { id: 4, name: 'Pasado reciente', gridArea: '3 / 1 / 4 / 2', zIndex: 1 }, // (5) Izquierda
+    { id: 5, name: 'Futuro cercano', gridArea: '3 / 3 / 4 / 4', zIndex: 1 }, // (6) Derecha
+    { id: 6, name: 'Obstáculos', gridArea: '5 / 4 / 6 / 5', zIndex: 1 }, // (7) Torre - abajo
+    { id: 7, name: 'Entorno familiar', gridArea: '4 / 4 / 5 / 5', zIndex: 1 }, // (8) Torre - medio-abajo
+    { id: 8, name: 'Miedos y temores', gridArea: '3 / 4 / 4 / 5', zIndex: 1 }, // (9) Torre - medio
+    { id: 9, name: 'Conclusión, consejo', gridArea: '2 / 4 / 3 / 5', zIndex: 1 }, // (10) Torre - arriba
   ];
 
   return (
@@ -65,12 +64,12 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
       </motion.div>
 
       {/* Celtic Cross Layout */}
-      <div className="relative mb-8 overflow-x-auto">
+      <div className="relative mb-8 overflow-x-auto pb-12">
         <div
-          className="grid gap-3 md:gap-4 mx-auto"
+          className="grid gap-2 md:gap-3 mx-auto"
           style={{
-            gridTemplateColumns: 'repeat(4, minmax(90px, 110px))',
-            gridTemplateRows: 'repeat(4, minmax(135px, 165px))',
+            gridTemplateColumns: 'repeat(4, minmax(85px, 105px))',
+            gridTemplateRows: 'repeat(5, minmax(125px, 155px))',
             justifyContent: 'center',
           }}
         >
@@ -90,7 +89,7 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
               >
                 {card ? (
                   <div
-                    className="w-24 h-36 md:w-28 md:h-42"
+                    className="w-20 h-30 md:w-24 md:h-36"
                     style={{
                       transform: position.rotated ? 'rotate(90deg)' : 'none',
                     }}

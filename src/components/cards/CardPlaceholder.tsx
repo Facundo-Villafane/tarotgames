@@ -15,7 +15,7 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
   compact = false,
 }) => {
   const sizeClasses = compact
-    ? 'w-24 h-36 md:w-28 md:h-42'
+    ? 'w-20 h-30 md:w-24 md:h-36'
     : 'w-32 h-48 md:w-40 md:h-60';
 
   return (
