@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { allSpreads } from '../data/spreads';
+import { LiquidChrome } from '../components/ui/LiquidChrome';
 import logoImg from '../assets/logo.png';
 import diaImg from '../assets/dia.png';
 import tresImg from '../assets/tres.png';
@@ -146,22 +147,15 @@ export const Home: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Background Decorations */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-        {/* Large Gradient Orbs */}
-        <div className="absolute top-0 left-1/4 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-violet-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] bg-fuchsia-500/5 rounded-full blur-3xl"></div>
-
-        {/* Subtle Grid Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(124, 58, 237, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '80px 80px',
-          }}
+      {/* Liquid Chrome Background */}
+      <div className="fixed inset-0 -z-10 opacity-30">
+        <LiquidChrome
+          baseColor={[0.3, 0.15, 0.5]}
+          speed={0.15}
+          amplitude={0.3}
+          frequencyX={2}
+          frequencyY={2}
+          interactive={true}
         />
       </div>
     </div>

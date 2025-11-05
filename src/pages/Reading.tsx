@@ -8,6 +8,7 @@ import { SpreadLayout } from '../components/spreads/SpreadLayout';
 import { InterpretationDisplay } from '../components/interpretation/InterpretationDisplay';
 import { Button } from '../components/ui/Button';
 import { Loading } from '../components/ui/Loading';
+import { LiquidChrome } from '../components/ui/LiquidChrome';
 import { getInterpretation } from '../services/groq.service';
 import { validateUserQuestion, type ValidationResult } from '../utils/inputValidation';
 
@@ -110,7 +111,18 @@ export const Reading: React.FC = () => {
     drawnCards.length === currentSpread.positions.length && !interpretation;
 
   return (
-    <div className="min-h-screen p-4 py-8">
+    <div className="min-h-screen p-4 py-8 relative">
+      {/* Liquid Chrome Background */}
+      <div className="fixed inset-0 -z-10 opacity-30">
+        <LiquidChrome
+          baseColor={[0.3, 0.15, 0.5]}
+          speed={0.15}
+          amplitude={0.3}
+          frequencyX={2}
+          frequencyY={2}
+          interactive={true}
+        />
+      </div>
       {/* Back Button */}
       <div className="max-w-6xl mx-auto mb-6">
         <Button
