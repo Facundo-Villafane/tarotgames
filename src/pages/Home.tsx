@@ -33,9 +33,16 @@ export const Home: React.FC = () => {
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.35 }}
-          className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-violet-500 to-fuchsia-500 mb-8 sm:mb-10 relative overflow-hidden"
+          className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-8 sm:mb-10 relative"
         >
-          <img src={logoImg} alt="Arcano Oracle" className="w-full h-full object-cover" />
+          <img
+            src={logoImg}
+            alt="Arcano Oracle"
+            className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(139,92,246,0.5)]"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6)) drop-shadow(0 0 40px rgba(217, 70, 239, 0.4))'
+            }}
+          />
         </motion.div>
 
         {/* Title */}
@@ -43,12 +50,9 @@ export const Home: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold px-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold px-6 text-white title-font"
         >
-          <span className="bg-gradient-to-r from-violet-400 via-fuchsia-400 to-amber-400 bg-clip-text text-transparent title-font">
-            Arcano Oracle
-          </span>
+          Arcano Oracle
         </motion.h1>
       </motion.div>
 
@@ -68,17 +72,17 @@ export const Home: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 * index, duration: 0.4 }}
               onClick={() => navigate(`/reading/${spread.id}`)}
-              className="group relative cursor-pointer h-[500px]"
+              className="group relative cursor-pointer"
             >
               <motion.div
                 whileHover={{ y: -8 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative bg-gradient-to-br from-violet-400/90 via-purple-400/90 to-fuchsia-400/90 rounded-[32px] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/40 h-full"
+                className="relative bg-gradient-to-br from-violet-400/90 via-purple-400/90 to-fuchsia-400/90 rounded-[32px] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/40 h-[500px]"
               >
                 {/* Card Content */}
-                <div className="relative h-full p-8 flex flex-col">
+                <div className="relative h-full p-8 flex flex-col justify-between">
 
-                  {/* Header Section */}
+                  {/* Header Section - Fixed height */}
                   <div className="relative z-10 flex-shrink-0">
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-black/10 backdrop-blur-sm flex items-center justify-center">
@@ -86,28 +90,25 @@ export const Home: React.FC = () => {
                           {spread.positions.length}
                         </span>
                       </div>
-                      <button className="w-8 h-8 rounded-full bg-black/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span className="text-white text-lg leading-none">⋯</span>
-                      </button>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3 title-font leading-tight drop-shadow-lg">
+                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3 title-font leading-tight drop-shadow-lg min-h-[80px]">
                       {spread.name}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-white/80 leading-relaxed font-light line-clamp-3">
+                    <p className="text-sm sm:text-base text-white/80 leading-relaxed font-light line-clamp-3 min-h-[60px]">
                       {spread.description}
                     </p>
                   </div>
 
-                  {/* Icon Section - Centered */}
-                  <div className="flex-1 flex items-center justify-center relative z-10">
-                    <div className="w-32 h-32 sm:w-40 sm:h-40 opacity-20 group-hover:opacity-30 transform group-hover:scale-110 transition-all duration-500 drop-shadow-2xl">
+                  {/* Icon Section - Centered with fixed height */}
+                  <div className="relative z-10 flex items-center justify-center h-[160px]">
+                    <div className="w-32 h-32 sm:w-36 sm:h-36 opacity-20 group-hover:opacity-30 transform group-hover:scale-110 transition-all duration-500 drop-shadow-2xl">
                       <img src={spreadIcons[spread.id]} alt={spread.name} className="w-full h-full object-contain filter brightness-0 invert" />
                     </div>
                   </div>
 
-                  {/* Bottom Actions */}
+                  {/* Bottom Actions - Fixed height */}
                   <div className="relative z-10 flex items-center justify-between flex-shrink-0">
                     <div className="flex gap-3">
                       <div className="w-11 h-11 rounded-full bg-black/15 backdrop-blur-sm flex items-center justify-center">
