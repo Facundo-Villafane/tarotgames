@@ -64,12 +64,12 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
       </motion.div>
 
       {/* Celtic Cross Layout */}
-      <div className="relative mb-8 overflow-x-auto pb-12">
+      <div className="relative mb-8 overflow-x-auto pb-16 md:pb-20">
         <div
-          className="grid gap-2 md:gap-3 mx-auto"
+          className="grid gap-3 md:gap-4 lg:gap-6 mx-auto"
           style={{
-            gridTemplateColumns: 'repeat(4, minmax(85px, 105px))',
-            gridTemplateRows: 'repeat(5, minmax(125px, 155px))',
+            gridTemplateColumns: 'repeat(4, minmax(120px, 160px))',
+            gridTemplateRows: 'repeat(5, minmax(180px, 240px))',
             justifyContent: 'center',
           }}
         >
@@ -89,7 +89,7 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
               >
                 {card ? (
                   <div
-                    className="w-20 h-30 md:w-24 md:h-36"
+                    className="w-28 h-40 md:w-32 md:h-48 lg:w-36 lg:h-52"
                     style={{
                       transform: position.rotated ? 'rotate(90deg)' : 'none',
                     }}
@@ -115,8 +115,8 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
                   </div>
                 )}
                 {/* Position Label */}
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-center w-full px-1">
-                  <p className="text-xs text-white/60 whitespace-nowrap text-ellipsis overflow-hidden">
+                <div className="absolute -bottom-10 md:-bottom-12 left-1/2 transform -translate-x-1/2 text-center w-full px-1">
+                  <p className="text-xs md:text-sm text-white/70 whitespace-nowrap text-ellipsis overflow-hidden">
                     {position.id + 1}. {position.name}
                   </p>
                 </div>
