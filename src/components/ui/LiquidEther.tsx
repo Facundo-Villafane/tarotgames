@@ -2,28 +2,44 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 interface LiquidEtherProps {
-  colors?: number[][];
-  speed?: number;
-  amplitude?: number;
-  frequencyX?: number;
-  frequencyY?: number;
-  interactive?: boolean;
+  colors?: string[];
+  mouseForce?: number;
+  cursorSize?: number;
+  autoDemo?: boolean;
+  autoSpeed?: number;
+  autoIntensity?: number;
+  takeoverDuration?: number;
+  autoResumeDelay?: number;
+  autoRampDuration?: number;
 }
 
+// Utility to convert hex color to RGB array [0-1]
+const hexToRgb = (hex: string): [number, number, number] => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? [
+        parseInt(result[1], 16) / 255,
+        parseInt(result[2], 16) / 255,
+        parseInt(result[3], 16) / 255,
+      ]
+    : [0.5, 0.5, 0.5];
+};
+
 export const LiquidEther: React.FC<LiquidEtherProps> = ({
-  colors = [
-    [0.55, 0.36, 0.96], // Violet
-    [0.62, 0.25, 0.88], // Purple
-    [0.96, 0.25, 0.88], // Fuchsia
-  ],
-  speed = 0.15,
-  amplitude = 0.3,
-  frequencyX = 2,
-  frequencyY = 2,
-  interactive = true,
+  colors = ['#5227FF', '#FF9FFC', '#B19EEF'],
+  mouseForce = 20,
+  cursorSize = 100,
+  autoDemo = true,
+  autoSpeed = 0.5,
+  autoIntensity = 2.2,
+  takeoverDuration = 0.25,
+  autoResumeDelay = 3000,
+  autoRampDuration = 0.6,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
+  const autoDemoTimeRef = useRef(0);
+  const lastInteractionRef = useRef(0);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -56,6 +72,8 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
       uniform float u_amplitude;
       uniform float u_frequencyX;
       uniform float u_frequencyY;
+      uniform float u_mouseForce;
+      uniform float u_cursorSize;
       varying vec2 vUv;
 
       // Noise function
@@ -96,9 +114,9 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
         float noise2 = snoise(vec2(st.x * u_frequencyX * 1.5 - u_time * u_speed * 0.8, st.y * u_frequencyY * 1.5 + u_time * u_speed * 0.3));
         float noise3 = snoise(vec2(st.x * u_frequencyX * 0.8 + u_time * u_speed * 0.6, st.y * u_frequencyY * 0.8 - u_time * u_speed * 0.4));
 
-        // Mouse interaction
+        // Mouse interaction with custom force and cursor size
         float mouseDist = length(st - u_mouse);
-        float mouseEffect = smoothstep(0.5, 0.0, mouseDist) * 0.3;
+        float mouseEffect = smoothstep(u_cursorSize, 0.0, mouseDist) * u_mouseForce;
 
         // Combine noise layers
         float combinedNoise = (noise1 + noise2 * 0.5 + noise3 * 0.3) * u_amplitude + mouseEffect;
@@ -118,15 +136,20 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
       }
     `;
 
+    // Convert hex colors to RGB
+    const rgbColors = colors.map(hexToRgb);
+
     const uniforms = {
       u_time: { value: 0 },
       u_resolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
       u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
-      u_colors: { value: colors.map(c => new THREE.Vector3(c[0], c[1], c[2])) },
-      u_speed: { value: speed },
-      u_amplitude: { value: amplitude },
-      u_frequencyX: { value: frequencyX },
-      u_frequencyY: { value: frequencyY },
+      u_colors: { value: rgbColors.map(c => new THREE.Vector3(c[0], c[1], c[2])) },
+      u_speed: { value: autoSpeed },
+      u_amplitude: { value: autoIntensity * 0.2 },
+      u_frequencyX: { value: 2 },
+      u_frequencyY: { value: 2 },
+      u_mouseForce: { value: mouseForce / 100 },
+      u_cursorSize: { value: cursorSize / 1000 },
     };
 
     const geometry = new THREE.PlaneGeometry(2, 2);
@@ -141,12 +164,12 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
 
     // Mouse movement handler
     const handleMouseMove = (event: MouseEvent) => {
-      if (!interactive) return;
       const rect = container.getBoundingClientRect();
       mouseRef.current = {
         x: (event.clientX - rect.left) / rect.width,
         y: 1.0 - (event.clientY - rect.top) / rect.height,
       };
+      lastInteractionRef.current = Date.now();
     };
 
     // Resize handler
@@ -161,10 +184,24 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
     let animationId: number;
     const animate = () => {
       uniforms.u_time.value += 0.01;
-      uniforms.u_mouse.value.lerp(
-        new THREE.Vector2(mouseRef.current.x, mouseRef.current.y),
-        0.05
-      );
+
+      // Auto demo mode
+      if (autoDemo && Date.now() - lastInteractionRef.current > autoResumeDelay) {
+        autoDemoTimeRef.current += 0.01 * autoSpeed;
+        const autoDemoX = 0.5 + Math.sin(autoDemoTimeRef.current) * 0.3;
+        const autoDemoY = 0.5 + Math.cos(autoDemoTimeRef.current * 0.7) * 0.3;
+
+        uniforms.u_mouse.value.lerp(
+          new THREE.Vector2(autoDemoX, autoDemoY),
+          takeoverDuration * 0.1
+        );
+      } else {
+        uniforms.u_mouse.value.lerp(
+          new THREE.Vector2(mouseRef.current.x, mouseRef.current.y),
+          0.05
+        );
+      }
+
       renderer.render(scene, camera);
       animationId = requestAnimationFrame(animate);
     };
@@ -182,7 +219,7 @@ export const LiquidEther: React.FC<LiquidEtherProps> = ({
       material.dispose();
       container.removeChild(renderer.domElement);
     };
-  }, [colors, speed, amplitude, frequencyX, frequencyY, interactive]);
+  }, [colors, mouseForce, cursorSize, autoDemo, autoSpeed, autoIntensity, takeoverDuration, autoResumeDelay, autoRampDuration]);
 
   return <div ref={containerRef} className="w-full h-full" />;
 };
