@@ -1,6 +1,7 @@
 [build]
-  command = "cd arcano-oracle && npm install && npm run build"
-  publish = "arcano-oracle/dist"
+  base = "arcano-oracle"
+  command = "npm install && npm run build"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20.19.0"
