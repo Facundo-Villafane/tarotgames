@@ -5,13 +5,19 @@ interface CardPlaceholderProps {
   position: SpreadPosition;
   onClick?: () => void;
   isActive?: boolean;
+  compact?: boolean;
 }
 
 export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
   position,
   onClick,
   isActive = false,
+  compact = false,
 }) => {
+  const sizeClasses = compact
+    ? 'w-24 h-36 md:w-28 md:h-42'
+    : 'w-32 h-48 md:w-40 md:h-60';
+
   return (
     <motion.div
       className="relative"
@@ -20,7 +26,7 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
       transition={{ delay: position.id * 0.1 }}
     >
       <motion.div
-        className={`w-32 h-48 md:w-40 md:h-60 rounded-lg border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${
+        className={`${sizeClasses} rounded-lg border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${
           isActive
             ? 'border-violet-400 bg-violet-500/10 backdrop-blur-sm'
             : 'border-violet-500/30 bg-violet-500/5 hover:border-violet-400 hover:bg-violet-500/10'
@@ -49,12 +55,16 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
             : {}
         }
       >
-        <div className="text-center p-4">
-          <div className="text-4xl mb-2 opacity-50">
+        <div className={`text-center ${compact ? 'p-2' : 'p-4'}`}>
+          <div className={`${compact ? 'text-2xl mb-1' : 'text-4xl mb-2'} opacity-50`}>
             {isActive ? '✨' : '?'}
           </div>
-          <p className="text-sm font-semibold text-white/80">{position.name}</p>
-          <p className="text-xs text-white/60 mt-2">{position.question}</p>
+          {!compact && (
+            <>
+              <p className="text-sm font-semibold text-white/80">{position.name}</p>
+              <p className="text-xs text-white/60 mt-2">{position.question}</p>
+            </>
+          )}
         </div>
       </motion.div>
     </motion.div>
