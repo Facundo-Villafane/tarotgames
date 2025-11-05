@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { allSpreads } from '../data/spreads';
 import { LiquidChrome } from '../components/ui/LiquidChrome';
+import { GSAPCard } from '../components/ui/GSAPCard';
 import logoImg from '../assets/logo.png';
 import diaImg from '../assets/dia.png';
 import tresImg from '../assets/tres.png';
@@ -77,14 +78,17 @@ export const Home: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 * index, duration: 0.4 }}
-              onClick={() => navigate(`/reading/${spread.id}`)}
-              className="group relative cursor-pointer"
+              className="group relative"
             >
-              <motion.div
-                whileHover={{ y: -8 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative bg-gradient-to-br from-violet-400/90 via-purple-400/90 to-fuchsia-400/90 rounded-[32px] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/40 h-[500px]"
+              <GSAPCard
+                onClick={() => navigate(`/reading/${spread.id}`)}
+                className="cursor-pointer"
               >
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative bg-gradient-to-br from-violet-400/90 via-purple-400/90 to-fuchsia-400/90 rounded-[32px] overflow-hidden transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-violet-500/40 h-[500px]"
+                >
                 {/* Card Content */}
                 <div className="relative h-full p-8 flex flex-col justify-between">
 
@@ -142,6 +146,7 @@ export const Home: React.FC = () => {
                   />
                 </div>
               </motion.div>
+            </GSAPCard>
             </motion.div>
           ))}
         </div>
