@@ -9,7 +9,7 @@ import { CelticCrossLayout } from '../components/spreads/CelticCrossLayout';
 import { InterpretationDisplay } from '../components/interpretation/InterpretationDisplay';
 import { Button } from '../components/ui/Button';
 import { Loading } from '../components/ui/Loading';
-import { LiquidChrome } from '../components/ui/LiquidChrome';
+import { LiquidEther } from '../components/ui/LiquidEther';
 import { getInterpretation } from '../services/groq.service';
 import { validateUserQuestion, type ValidationResult } from '../utils/inputValidation';
 
@@ -113,10 +113,14 @@ export const Reading: React.FC = () => {
 
   return (
     <div className="min-h-screen p-4 py-8 relative">
-      {/* Liquid Chrome Background */}
+      {/* Liquid Ether Background */}
       <div className="fixed inset-0 -z-10 opacity-30">
-        <LiquidChrome
-          baseColor={[0.3, 0.15, 0.5]}
+        <LiquidEther
+          colors={[
+            [0.55, 0.36, 0.96], // Violet
+            [0.62, 0.25, 0.88], // Purple
+            [0.96, 0.25, 0.88], // Fuchsia
+          ]}
           speed={0.15}
           amplitude={0.3}
           frequencyX={2}

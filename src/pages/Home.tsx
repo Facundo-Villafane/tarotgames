@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { allSpreads } from '../data/spreads';
-import { LiquidChrome } from '../components/ui/LiquidChrome';
+import { LiquidEther } from '../components/ui/LiquidEther';
 import { GSAPCard } from '../components/ui/GSAPCard';
 import logoImg from '../assets/logo.png';
 import diaImg from '../assets/dia.png';
@@ -152,10 +152,14 @@ export const Home: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* Liquid Chrome Background */}
+      {/* Liquid Ether Background */}
       <div className="fixed inset-0 -z-10 opacity-30">
-        <LiquidChrome
-          baseColor={[0.3, 0.15, 0.5]}
+        <LiquidEther
+          colors={[
+            [0.55, 0.36, 0.96], // Violet
+            [0.62, 0.25, 0.88], // Purple
+            [0.96, 0.25, 0.88], // Fuchsia
+          ]}
           speed={0.15}
           amplitude={0.3}
           frequencyX={2}

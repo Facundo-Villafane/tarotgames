@@ -22,6 +22,7 @@
     "react-router-dom": "^7.9.5",
     "serve": "^14.2.5",
     "tailwindcss": "^4.1.16",
+    "three": "^0.181.0",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
