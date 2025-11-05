@@ -35,14 +35,19 @@ export const Home: React.FC = () => {
           transition={{ duration: 0.8, type: "spring", bounce: 0.35 }}
           className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-8 sm:mb-10 relative"
         >
-          <img
-            src={logoImg}
-            alt="Arcano Oracle"
-            className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(139,92,246,0.5)]"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6)) drop-shadow(0 0 40px rgba(217, 70, 239, 0.4))'
-            }}
-          />
+          <div className="relative w-full h-full">
+            {/* Gradient background for the logo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 rounded-2xl opacity-90"></div>
+            <img
+              src={logoImg}
+              alt="Arcano Oracle"
+              className="relative w-full h-full object-contain"
+              style={{
+                mixBlendMode: 'multiply',
+                filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))'
+              }}
+            />
+          </div>
         </motion.div>
 
         {/* Title */}
@@ -92,7 +97,7 @@ export const Home: React.FC = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl font-bold text-white mb-3 title-font leading-tight drop-shadow-lg min-h-[80px]">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 title-font leading-tight drop-shadow-lg min-h-[70px] flex items-center">
                       {spread.name}
                     </h3>
 
