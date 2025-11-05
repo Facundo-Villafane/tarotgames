@@ -130,11 +130,11 @@ export const Reading: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-2xl mx-auto mb-8"
         >
-          <div className="bg-card-bg/80 backdrop-blur-sm rounded-xl p-6 border border-primary/20">
-            <div className="flex items-start gap-3 mb-4">
-              <MessageSquare className="w-5 h-5 text-accent mt-1" />
+          <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-8 border border-zinc-800/50">
+            <div className="flex items-start gap-3 mb-6">
+              <MessageSquare className="w-5 h-5 text-amber-400 mt-1" strokeWidth={1.5} />
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-text mb-2">
+                <h3 className="text-lg font-semibold text-white mb-4">
                   ¿Tienes una pregunta? (Opcional)
                 </h3>
                 <div className="relative">
@@ -142,17 +142,17 @@ export const Reading: React.FC = () => {
                     value={question}
                     onChange={(e) => handleQuestionChange(e.target.value)}
                     placeholder="Escribe tu pregunta aquí para una lectura más personalizada..."
-                    className={`w-full bg-background/50 border rounded-lg p-3 text-text placeholder-text/50 focus:outline-none resize-none transition-colors ${
+                    className={`w-full bg-zinc-800/50 border rounded-xl p-4 text-white placeholder-gray-500 focus:outline-none resize-none transition-colors ${
                       !validationResult.isValid
                         ? 'border-red-500 focus:border-red-500'
-                        : 'border-primary/30 focus:border-accent'
+                        : 'border-zinc-700/50 focus:border-violet-500/50'
                     }`}
                     rows={3}
                     maxLength={500}
                   />
 
                   {/* Contador de caracteres */}
-                  <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center justify-between mt-3">
                     <div className="flex-1">
                       {!validationResult.isValid && validationResult.error && (
                         <motion.div
@@ -169,7 +169,7 @@ export const Reading: React.FC = () => {
                       className={`text-xs ml-4 flex-shrink-0 ${
                         (validationResult.remainingChars ?? 500) < 50
                           ? 'text-amber-400'
-                          : 'text-text/50'
+                          : 'text-gray-500'
                       }`}
                     >
                       {question.length}/500
@@ -185,15 +185,15 @@ export const Reading: React.FC = () => {
                   setValidationResult({ isValid: true });
                   setShowQuestionInput(false);
                 }}
-                variant="outline"
-                size="sm"
+                variant="ghost"
+                size="md"
               >
                 Omitir pregunta
               </Button>
               <Button
                 onClick={() => setShowQuestionInput(false)}
                 variant="primary"
-                size="sm"
+                size="md"
                 disabled={!validationResult.isValid}
               >
                 Continuar
