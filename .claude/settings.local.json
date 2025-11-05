@@ -7,7 +7,12 @@
       "Bash(del \"src\\App.css\")",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
-      "Bash(del tailwind.config.js)"
+      "Bash(del tailwind.config.js)",
+      "Bash(dir:*)",
+      "Bash(git add:*)",
+      "Bash(git log:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd security validation, token optimization, and custom UI assets\n\n- Implement 5-layer prompt injection defense system\n- Add frontend validation with real-time feedback\n- Dynamic token allocation based on card count (1 card: 250 tokens, 10+ cards: 900 tokens)\n- Replace Lucide icons with custom PNG assets (logo, dia, tres, destino, cruz)\n- Clean up landing page UI (removed badges, footer, subtitle)\n- Uniform card heights (500px) with line-clamped descriptions\nEOF\n)\")",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
