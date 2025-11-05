@@ -114,16 +114,18 @@ export const Reading: React.FC = () => {
   return (
     <div className="min-h-screen p-4 py-8 relative">
       {/* Liquid Ether Background */}
-      <div className="fixed inset-0 -z-10 opacity-30">
+      <div className="fixed inset-0 -z-10 opacity-50">
         <LiquidEther
           colors={[
             'rgb(140, 92, 245)', // Violet
             'rgb(158, 64, 224)', // Purple
             'rgb(245, 64, 224)', // Fuchsia
           ]}
-          autoSpeed={0.15}
-          autoIntensity={0.3}
+          autoSpeed={0.3}
+          autoIntensity={1.5}
           autoDemo={true}
+          mouseForce={25}
+          resolution={0.7}
         />
       </div>
       {/* Back Button */}
