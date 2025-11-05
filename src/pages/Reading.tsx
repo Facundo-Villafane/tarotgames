@@ -141,9 +141,9 @@ export const Reading: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-2xl mx-auto mb-8"
         >
-          <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-8 border border-zinc-800/50">
+          <div className="bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 backdrop-blur-xl rounded-2xl p-8 border border-violet-500/20">
             <div className="flex items-start gap-3 mb-6">
-              <MessageSquare className="w-5 h-5 text-amber-400 mt-1" strokeWidth={1.5} />
+              <MessageSquare className="w-5 h-5 text-violet-400 mt-1" strokeWidth={1.5} />
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-4">
                   ¿Tienes una pregunta? (Opcional)
@@ -153,10 +153,10 @@ export const Reading: React.FC = () => {
                     value={question}
                     onChange={(e) => handleQuestionChange(e.target.value)}
                     placeholder="Escribe tu pregunta aquí para una lectura más personalizada..."
-                    className={`w-full bg-zinc-800/50 border rounded-xl p-4 text-white placeholder-gray-500 focus:outline-none resize-none transition-colors ${
+                    className={`w-full bg-white/5 border rounded-xl p-4 text-white placeholder-violet-300/50 focus:outline-none resize-none transition-colors ${
                       !validationResult.isValid
                         ? 'border-red-500 focus:border-red-500'
-                        : 'border-zinc-700/50 focus:border-violet-500/50'
+                        : 'border-violet-500/30 focus:border-violet-400/50'
                     }`}
                     rows={3}
                     maxLength={500}

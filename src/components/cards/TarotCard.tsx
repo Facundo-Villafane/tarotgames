@@ -60,17 +60,17 @@ export const TarotCard: React.FC<TarotCardProps> = ({
           backfaceVisibility: 'hidden',
         }}
       >
-        <div className="w-full h-full bg-gradient-to-br from-primary via-secondary to-primary p-1">
-          <div className="w-full h-full bg-card-bg rounded-lg flex items-center justify-center relative overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 p-1">
+          <div className="w-full h-full bg-gray-900 rounded-lg flex items-center justify-center relative overflow-hidden">
             {/* Mystical Pattern */}
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-accent rounded-full"></div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-4 border-accent rounded-full"></div>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-4 border-accent rotate-45">
-                <div className="absolute inset-0 border-4 border-accent"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-violet-400 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border-4 border-violet-400 rounded-full"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border-4 border-violet-400 rotate-45">
+                <div className="absolute inset-0 border-4 border-violet-400"></div>
               </div>
             </div>
-            <div className="text-accent font-bold text-xl z-10">★</div>
+            <div className="text-violet-400 font-bold text-xl z-10">★</div>
           </div>
         </div>
       </div>
@@ -84,17 +84,17 @@ export const TarotCard: React.FC<TarotCardProps> = ({
         }}
       >
         <div className={`w-full h-full bg-gradient-to-br ${getSuitColor(card?.suit)} p-1`}>
-          <div className="w-full h-full bg-card-bg rounded-lg p-4 flex flex-col justify-between">
+          <div className="w-full h-full bg-gray-900 rounded-lg p-4 flex flex-col justify-between">
             {/* Card Header */}
             <div className="text-center">
-              <p className="text-xs text-accent uppercase tracking-wider mb-1">
+              <p className="text-xs text-violet-400 uppercase tracking-wider mb-1">
                 {getArcanaLabel()}
               </p>
-              <h3 className="text-base font-bold text-text">
+              <h3 className="text-base font-bold text-white">
                 {card?.name || 'Unknown'}
               </h3>
               {card?.number !== undefined && (
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-xs text-white/60 mt-1">
                   {card.arcana === 'major' ? `Arcano ${card.number}` : `Número ${card.number}`}
                 </p>
               )}
@@ -102,7 +102,7 @@ export const TarotCard: React.FC<TarotCardProps> = ({
 
             {/* Card Image Placeholder */}
             <div className="flex-1 flex items-center justify-center my-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center border-2 border-accent/30">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 flex items-center justify-center border-2 border-violet-400/30">
                 <span className="text-4xl opacity-50">
                   {card?.suit === 'wands' && '🔥'}
                   {card?.suit === 'cups' && '🌊'}
@@ -122,14 +122,14 @@ export const TarotCard: React.FC<TarotCardProps> = ({
                     .map((keyword, idx) => (
                       <span
                         key={idx}
-                        className="text-xs px-2 py-1 bg-primary/20 rounded-full text-text/80"
+                        className="text-xs px-2 py-1 bg-violet-500/20 rounded-full text-white/80"
                       >
                         {keyword}
                       </span>
                     ))}
                 </div>
                 {isReversed && (
-                  <p className="text-xs text-accent font-semibold">Invertida</p>
+                  <p className="text-xs text-violet-400 font-semibold">Invertida</p>
                 )}
               </div>
             )}

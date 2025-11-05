@@ -43,10 +43,10 @@ export const SpreadLayout: React.FC<SpreadLayoutProps> = ({
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-8"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-2">
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
           {spread.name}
         </h2>
-        <p className="text-text/70">{spread.description}</p>
+        <p className="text-white/70">{spread.description}</p>
       </motion.div>
 
       {/* Cards Layout */}
@@ -106,7 +106,7 @@ export const SpreadLayout: React.FC<SpreadLayoutProps> = ({
           animate={{ opacity: 1 }}
           className="text-center mt-8"
         >
-          <p className="text-text/70 text-sm">
+          <p className="text-white/70 text-sm">
             Haz clic en el espacio brillante para sacar la siguiente carta
           </p>
         </motion.div>
