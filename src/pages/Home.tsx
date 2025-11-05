@@ -156,15 +156,13 @@ export const Home: React.FC = () => {
       <div className="fixed inset-0 -z-10 opacity-30">
         <LiquidEther
           colors={[
-            [0.55, 0.36, 0.96], // Violet
-            [0.62, 0.25, 0.88], // Purple
-            [0.96, 0.25, 0.88], // Fuchsia
+            'rgb(140, 92, 245)', // Violet
+            'rgb(158, 64, 224)', // Purple
+            'rgb(245, 64, 224)', // Fuchsia
           ]}
-          speed={0.15}
-          amplitude={0.3}
-          frequencyX={2}
-          frequencyY={2}
-          interactive={true}
+          autoSpeed={0.15}
+          autoIntensity={0.3}
+          autoDemo={true}
         />
       </div>
     </div>
