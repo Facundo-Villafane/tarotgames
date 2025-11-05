@@ -9,7 +9,7 @@ import { CelticCrossLayout } from '../components/spreads/CelticCrossLayout';
 import { InterpretationDisplay } from '../components/interpretation/InterpretationDisplay';
 import { Button } from '../components/ui/Button';
 import { Loading } from '../components/ui/Loading';
-import { LiquidEther } from '../components/ui/LiquidEther';
+import LiquidEther from '../components/ui/LiquidEther';
 import { getInterpretation } from '../services/groq.service';
 import { validateUserQuestion, type ValidationResult } from '../utils/inputValidation';
 

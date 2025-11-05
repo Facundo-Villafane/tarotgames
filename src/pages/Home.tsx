@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { allSpreads } from '../data/spreads';
-import { LiquidEther } from '../components/ui/LiquidEther';
+import LiquidEther from '../components/ui/LiquidEther';
 import { GSAPCard } from '../components/ui/GSAPCard';
 import logoImg from '../assets/logo.png';
 import diaImg from '../assets/dia.png';
