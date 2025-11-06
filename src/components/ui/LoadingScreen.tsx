@@ -92,14 +92,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress, total })
 
           {/* Percentage */}
           <div className="mt-4 flex items-center justify-center">
-            <motion.span
-              key={percentage}
-              initial={{ opacity: 0, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-violet-400 font-bold text-lg"
-            >
+            <span className="text-violet-400 font-bold text-lg">
               {percentage}%
-            </motion.span>
+            </span>
           </div>
         </motion.div>
 
