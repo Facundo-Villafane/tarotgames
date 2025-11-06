@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Share2, Save } from 'lucide-react';
+import { Button } from '../ui/Button';
 
 interface InterpretationDisplayProps {
   interpretation: string;
+  onSave?: () => void;
+  onShare?: () => void;
 }
 
 export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
   interpretation,
+  onSave,
+  onShare,
 }) => {
   return (
     <motion.div
@@ -39,8 +44,7 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
           </div>
         </div>
 
-        {/* Actions - Disabled for now, will be re-enabled with image export functionality */}
-        {/*
+        {/* Actions */}
         <div className="flex flex-wrap gap-4 justify-center">
           {onSave && (
             <Button onClick={onSave} variant="primary" size="md">
@@ -55,7 +59,6 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
             </Button>
           )}
         </div>
-        */}
 
         {/* Mystical Border Effect */}
         <div className="absolute inset-0 rounded-xl pointer-events-none">
