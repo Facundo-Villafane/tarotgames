@@ -23,8 +23,8 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
       <div className="bg-card-bg/80 backdrop-blur-sm rounded-xl p-6 md:p-8 shadow-glow border border-primary/20">
         {/* Header */}
         <div className="flex items-center gap-2 mb-6">
-          <Sparkles className="w-6 h-6 text-accent" />
-          <h2 className="text-2xl font-bold text-gradient">Tu Interpretación</h2>
+          <Sparkles className="w-6 h-6 text-violet-400" />
+          <h2 className="text-2xl font-bold text-white">Tu Interpretación</h2>
         </div>
 
         {/* Interpretation Text */}
@@ -44,7 +44,8 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
           </div>
         </div>
 
-        {/* Actions */}
+        {/* Actions - Disabled for now, will be re-enabled with image export functionality */}
+        {/*
         <div className="flex flex-wrap gap-4 justify-center">
           {onSave && (
             <Button onClick={onSave} variant="primary" size="md">
@@ -59,6 +60,7 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
             </Button>
           )}
         </div>
+        */}
 
         {/* Mystical Border Effect */}
         <div className="absolute inset-0 rounded-xl pointer-events-none">

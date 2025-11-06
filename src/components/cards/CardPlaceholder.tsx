@@ -20,27 +20,24 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
 
   return (
     <motion.div
-      className="relative"
+      className="relative w-full h-full cursor-pointer"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: position.id * 0.1 }}
+      onClick={onClick}
+      whileHover={{ scale: isActive ? 1.05 : 1.02 }}
+      whileTap={{ scale: 0.95 }}
     >
+      {/* Card Back */}
       <motion.div
-        className={`${sizeClasses} rounded-lg border-2 flex flex-col items-center justify-center cursor-pointer transition-all ${
-          isActive
-            ? 'border-violet-400 bg-violet-500/10 backdrop-blur-sm'
-            : 'border-violet-500/30 bg-violet-500/5 hover:border-violet-400 hover:bg-violet-500/10'
-        }`}
-        onClick={onClick}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        className="w-full h-full rounded-lg overflow-hidden relative"
         animate={
           isActive
             ? {
                 boxShadow: [
-                  '0 0 20px rgba(139, 92, 246, 0.3)',
-                  '0 0 40px rgba(139, 92, 246, 0.6)',
-                  '0 0 20px rgba(139, 92, 246, 0.3)',
+                  '0 0 20px rgba(139, 92, 246, 0.5)',
+                  '0 0 40px rgba(139, 92, 246, 0.8)',
+                  '0 0 20px rgba(139, 92, 246, 0.5)',
                 ],
               }
             : {}
@@ -55,17 +52,19 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
             : {}
         }
       >
-        <div className={`text-center ${compact ? 'p-2' : 'p-4'}`}>
-          <div className={`${compact ? 'text-2xl mb-1' : 'text-4xl mb-2'} opacity-50`}>
-            {isActive ? '✨' : '?'}
+        <img
+          src="/src/assets/Cards-png/CardBacks.png"
+          alt="Card Back"
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+          decoding="async"
+        />
+        {/* Active indicator overlay */}
+        {isActive && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-6xl animate-pulse">✨</div>
           </div>
-          {!compact && (
-            <>
-              <p className="text-sm font-semibold text-white/80">{position.name}</p>
-              <p className="text-xs text-white/60 mt-2">{position.question}</p>
-            </>
-          )}
-        </div>
+        )}
       </motion.div>
     </motion.div>
   );

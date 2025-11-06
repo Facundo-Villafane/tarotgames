@@ -4,6 +4,7 @@ import { CardPlaceholder } from '../cards/CardPlaceholder';
 import type { Spread, DrawnCard } from '../../types/tarot';
 import { Button } from '../ui/Button';
 import { Sparkles } from 'lucide-react';
+import { translateCardName } from '../../utils/cardTranslations';
 
 interface SpreadLayoutProps {
   spread: Spread;
@@ -59,25 +60,46 @@ export const SpreadLayout: React.FC<SpreadLayoutProps> = ({
             return (
               <div
                 key={position.id}
-                className="relative"
+                className="relative flex flex-col items-center gap-3"
                 style={{
                   transform: `rotate(${position.rotation || 0}deg)`,
                 }}
               >
                 {card ? (
-                  <div className="w-32 h-48 md:w-40 md:h-60">
-                    <TarotCard
-                      card={card}
-                      isRevealed={true}
-                      isReversed={card.isReversed}
+                  <>
+                    {/* Nombre de la carta */}
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="text-center"
+                    >
+                      <h3 className="text-sm md:text-base font-semibold text-white">
+                        {translateCardName(card.name)}
+                      </h3>
+                      {card.isReversed && (
+                        <p className="text-xs text-violet-400 mt-1">Invertida</p>
+                      )}
+                    </motion.div>
+
+                    {/* Carta */}
+                    <div className="w-40 h-60 md:w-48 md:h-72" style={{ aspectRatio: '300/527' }}>
+                      <TarotCard
+                        card={card}
+                        isRevealed={true}
+                        isReversed={card.isReversed}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <div className="w-40 h-60 md:w-48 md:h-72" style={{ aspectRatio: '300/527' }}>
+                    <CardPlaceholder
+                      position={position}
+                      onClick={() => isActive && onDrawCard(position.id)}
+                      isActive={isActive}
+                      compact={false}
                     />
                   </div>
-                ) : (
-                  <CardPlaceholder
-                    position={position}
-                    onClick={() => isActive && onDrawCard(position.id)}
-                    isActive={isActive}
-                  />
                 )}
               </div>
             );
