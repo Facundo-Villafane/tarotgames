@@ -1,6 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Prevent white flash - must be before @theme */
+html, body {
+  background-color: #0A0A0F;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: #0A0A0F;
+}
+
 /* 🚀 CONFIGURACIÓN DE TEMA PARA TAILWIND 4.1 (MANTENIDO Y REVISADO) */
 @theme {
   /* Configuración de Colores */
