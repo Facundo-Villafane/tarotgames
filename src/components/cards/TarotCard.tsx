@@ -2,7 +2,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import type { TarotCard as TarotCardType } from '../../types/tarot';
 import { getCardImagePath } from '../../utils/cardImageMapper';
-import { isImageCached } from '../../utils/imagePreloader';
 
 interface TarotCardProps {
   card?: TarotCardType;

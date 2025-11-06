@@ -5,18 +5,13 @@ interface CardPlaceholderProps {
   position: SpreadPosition;
   onClick?: () => void;
   isActive?: boolean;
-  compact?: boolean;
 }
 
 export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
   position,
   onClick,
   isActive = false,
-  compact = false,
 }) => {
-  const sizeClasses = compact
-    ? 'w-20 h-30 md:w-24 md:h-36'
-    : 'w-32 h-48 md:w-40 md:h-60';
 
   return (
     <motion.div
