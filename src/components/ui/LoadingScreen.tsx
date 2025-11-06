@@ -36,11 +36,23 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ progress, total })
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <img
-            src={logoImg}
-            alt="Arcano Oracle"
-            className="w-32 h-32 mx-auto drop-shadow-2xl"
-          />
+          <div className="relative w-32 h-32 mx-auto">
+            {/* Gradient overlay mask */}
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-violet-400 via-purple-400 to-fuchsia-400"
+              style={{
+                WebkitMaskImage: `url(${logoImg})`,
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+                maskImage: `url(${logoImg})`,
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center',
+                filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))'
+              }}
+            />
+          </div>
         </motion.div>
 
         {/* Loading Text */}

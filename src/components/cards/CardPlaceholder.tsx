@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import type { SpreadPosition } from '../../types/tarot';
+import cardBackImg from '../../assets/Cards-png/CardBacks.png';
 
 interface CardPlaceholderProps {
   position: SpreadPosition;
@@ -53,7 +54,7 @@ export const CardPlaceholder: React.FC<CardPlaceholderProps> = ({
         }
       >
         <img
-          src="/src/assets/Cards-png/CardBacks.png"
+          src={cardBackImg}
           alt="Card Back"
           className="w-full h-full object-cover object-center"
           loading="eager"

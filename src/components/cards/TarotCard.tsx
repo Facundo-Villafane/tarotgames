@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import type { TarotCard as TarotCardType } from '../../types/tarot';
 import { getCardImagePath } from '../../utils/cardImageMapper';
+import cardBackImg from '../../assets/Cards-png/CardBacks.png';
 
 interface TarotCardProps {
   card?: TarotCardType;
@@ -44,7 +45,7 @@ export const TarotCard: React.FC<TarotCardProps> = ({
         }}
       >
         <img
-          src="/src/assets/Cards-png/CardBacks.png"
+          src={cardBackImg}
           alt="Card Back"
           className="w-full h-full object-cover object-center"
           loading="eager"

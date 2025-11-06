@@ -115,7 +115,6 @@ export const SpreadLayout: React.FC<SpreadLayoutProps> = ({
           className="flex justify-center"
         >
           <Button onClick={onGetInterpretation} size="lg" variant="primary">
-            <Sparkles className="w-5 h-5" />
             Obtener Interpretación
           </Button>
         </motion.div>

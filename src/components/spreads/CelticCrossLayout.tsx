@@ -146,7 +146,6 @@ export const CelticCrossLayout: React.FC<CelticCrossLayoutProps> = ({
           className="flex justify-center mt-16"
         >
           <Button onClick={onGetInterpretation} size="lg" variant="primary">
-            <Sparkles className="w-5 h-5" />
             Obtener Interpretación
           </Button>
         </motion.div>

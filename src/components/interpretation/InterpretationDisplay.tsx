@@ -44,7 +44,8 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
           </div>
         </div>
 
-        {/* Actions */}
+        {/* Actions - Disabled for now, will be re-enabled with image export functionality */}
+        {/*
         <div className="flex flex-wrap gap-4 justify-center">
           {onSave && (
             <Button onClick={onSave} variant="primary" size="md">
@@ -59,6 +60,7 @@ export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
             </Button>
           )}
         </div>
+        */}
 
         {/* Mystical Border Effect */}
         <div className="absolute inset-0 rounded-xl pointer-events-none">

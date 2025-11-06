@@ -2,6 +2,10 @@
  * Preloads card images to improve performance
  */
 
+import { allCards } from '../data/cards';
+import { getCardImagePath } from './cardImageMapper';
+import cardBackImg from '../assets/Cards-png/CardBacks.png';
+
 const imageCache = new Map<string, HTMLImageElement>();
 
 export function preloadImage(src: string): Promise<void> {
@@ -35,45 +39,15 @@ export async function preloadAllCards(
   const cardImages: string[] = [];
 
   // Card back
-  cardImages.push('/src/assets/Cards-png/CardBacks.png');
+  cardImages.push(cardBackImg);
 
-  // Major Arcana (0-21)
-  const majorArcanaNames = [
-    'TheFool',
-    'TheMagician',
-    'TheHighPriestess',
-    'TheEmpress',
-    'TheEmperor',
-    'TheHierophant',
-    'TheLovers',
-    'TheChariot',
-    'Strength',
-    'TheHermit',
-    'WheelofFortune',
-    'Justice',
-    'TheHangedMan',
-    'Death',
-    'Temperance',
-    'TheDevil',
-    'TheTower',
-    'TheStar',
-    'TheMoon',
-    'TheSun',
-    'Judgement',
-    'TheWorld',
-  ];
-
-  majorArcanaNames.forEach((name, index) => {
-    const paddedNumber = index.toString().padStart(2, '0');
-    cardImages.push(`/src/assets/Cards-png/${paddedNumber}-${name}.png`);
-  });
-
-  // Minor Arcana (1-14 for each suit)
-  const suits = ['Cups', 'Pentacles', 'Swords', 'Wands'];
-  suits.forEach((suit) => {
-    for (let i = 1; i <= 14; i++) {
-      const paddedNumber = i.toString().padStart(2, '0');
-      cardImages.push(`/src/assets/Cards-png/${suit}${paddedNumber}.png`);
+  // Get all card image paths
+  allCards.forEach(card => {
+    try {
+      const imagePath = getCardImagePath(card);
+      cardImages.push(imagePath);
+    } catch (error) {
+      console.warn(`Failed to get image path for card: ${card.name}`, error);
     }
   });
 

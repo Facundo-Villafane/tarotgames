@@ -35,17 +35,21 @@ export const Home: React.FC = () => {
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.35 }}
-          className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-8 sm:mb-10 relative"
+          className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-8 sm:mb-10"
         >
           <div className="relative w-full h-full">
-            {/* Gradient background for the logo */}
-            <div className="absolute inset-0 bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500 rounded-2xl opacity-90"></div>
-            <img
-              src={logoImg}
-              alt="Arcano Oracle"
-              className="relative w-full h-full object-contain"
+            {/* Gradient overlay mask */}
+            <div
+              className="absolute inset-0 bg-gradient-to-br from-violet-400 via-purple-400 to-fuchsia-400"
               style={{
-                mixBlendMode: 'multiply',
+                WebkitMaskImage: `url(${logoImg})`,
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'center',
+                maskImage: `url(${logoImg})`,
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'center',
                 filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))'
               }}
             />
