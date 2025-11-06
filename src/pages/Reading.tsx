@@ -36,7 +36,6 @@ export const Reading: React.FC = () => {
     drawCard,
     setInterpretation,
     setLoadingInterpretation,
-    saveReading,
     clearCurrentReading,
   } = useReadingStore();
 
@@ -109,29 +108,6 @@ export const Reading: React.FC = () => {
       );
     } finally {
       setLoadingInterpretation(false);
-    }
-  };
-
-  const handleSaveReading = () => {
-    saveReading();
-    alert('Lectura guardada en el historial');
-  };
-
-  const handleShare = () => {
-    if (navigator.share && interpretation) {
-      navigator
-        .share({
-          title: `Lectura de Tarot - ${currentSpread?.name}`,
-          text: interpretation,
-        })
-        .catch(() => {
-          // Fallback: copy to clipboard
-          navigator.clipboard.writeText(interpretation);
-          alert('Interpretación copiada al portapapeles');
-        });
-    } else if (interpretation) {
-      navigator.clipboard.writeText(interpretation);
-      alert('Interpretación copiada al portapapeles');
     }
   };
 
@@ -402,8 +378,6 @@ export const Reading: React.FC = () => {
 
           <InterpretationDisplay
             interpretation={interpretation}
-            onSave={handleSaveReading}
-            onShare={handleShare}
           />
 
           <div className="flex justify-center mt-8">

@@ -1,17 +1,12 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Share2, Save } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { Sparkles } from 'lucide-react';
 
 interface InterpretationDisplayProps {
   interpretation: string;
-  onSave?: () => void;
-  onShare?: () => void;
 }
 
 export const InterpretationDisplay: React.FC<InterpretationDisplayProps> = ({
   interpretation,
-  onSave,
-  onShare,
 }) => {
   return (
     <motion.div

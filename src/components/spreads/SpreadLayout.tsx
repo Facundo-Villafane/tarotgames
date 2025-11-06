@@ -3,7 +3,6 @@ import { TarotCard } from '../cards/TarotCard';
 import { CardPlaceholder } from '../cards/CardPlaceholder';
 import type { Spread, DrawnCard } from '../../types/tarot';
 import { Button } from '../ui/Button';
-import { Sparkles } from 'lucide-react';
 import { translateCardName } from '../../utils/cardTranslations';
 
 interface SpreadLayoutProps {
